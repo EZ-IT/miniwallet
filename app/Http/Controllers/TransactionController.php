@@ -30,8 +30,8 @@ class TransactionController extends Controller
         return Inertia::render('transaction/Index', [
             'history' => TransactionResource::collection($user->transactions()->with(['sender:id,name', 'receiver:id,name'])->latest()->paginate(20)),
             'stats' => [
-                'incoming' => (float)$incomingSum,
-                'outgoing' => (float)$outgoingSum,
+                'incoming' => (float) $incomingSum,
+                'outgoing' => (float) $outgoingSum,
                 'incoming_count' => $incomingCount,
                 'outgoing_count' => $outgoingCount,
             ],
