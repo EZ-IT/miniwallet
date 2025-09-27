@@ -62,3 +62,8 @@ composer lint # for phpcsfixer
 composer rector # for refactoring the code
 composer test:types # for static analysis
 ```
+
+To run the test suite:
+```bash
+composer test # for running the tests
+```
