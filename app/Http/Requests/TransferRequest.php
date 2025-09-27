@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Transaction;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Override;
 
 class TransferRequest extends FormRequest
 {
@@ -33,7 +34,7 @@ class TransferRequest extends FormRequest
         ];
     }
 
-    #[\Override]
+    #[Override]
     public function messages(): array
     {
         return [

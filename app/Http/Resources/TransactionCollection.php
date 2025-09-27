@@ -11,9 +11,17 @@ class TransactionCollection extends ResourceCollection
     public function __construct($resource, /**
      * The current balance of the authenticated user.
      */
-        private readonly string $balance)
+        protected $balance)
     {
         parent::__construct($resource);
+    }
+
+    #[Override]
+    public function with($request): array
+    {
+        return [
+            'balance' => $this->balance,
+        ];
     }
 
     #[Override]

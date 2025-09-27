@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -29,10 +31,12 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|Transaction whereSenderId($value)
  * @method static Builder<static>|Transaction whereUpdatedAt($value)
  *
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Transaction extends Model
 {
+    use HasFactory;
+
     /**
      * The canonical number of decimal places to use for all monetary calculations
      * and storage, reflecting the precision in the database schema.
