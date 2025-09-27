@@ -12,10 +12,7 @@ parameters:
 
 
     ignoreErrors:
-        -
-            message: '#Static access to instance property .*::\$softDeleteField#'
-            paths:
-                - %currentWorkingDirectory%/app/Traits/LegacySoftDeletable.php
+#        -
 
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php
