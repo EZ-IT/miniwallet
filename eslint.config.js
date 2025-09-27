@@ -1,5 +1,7 @@
 import pluginVue from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser';
+import tsParser from '@typescript-eslint/parser'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
 
 export default [
     ...pluginVue.configs['flat/recommended'],
@@ -19,8 +21,14 @@ export default [
         ],
         languageOptions: {
             parser: vueParser,
-            ecmaVersion: 2022,
-            sourceType: 'module',
+            parserOptions: {
+                parser: {
+                    ts: tsParser,
+                },
+                ecmaVersion: 2022,
+                sourceType: 'module',
+                extraFileExtensions: ['.vue'],
+            },
             globals: {
                 Atomics: 'readonly',
                 SharedArrayBuffer: 'readonly',
@@ -113,6 +121,38 @@ export default [
             'vue/no-useless-v-bind': 'off',
             'vue/prefer-true-attribute-shorthand': 'error',
             'vue/no-irregular-whitespace': 'error',
+        },
+    },
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+                ecmaVersion: 2022,
+                sourceType: 'module',
+                extraFileExtensions: ['.vue'],
+            },
+        },
+        ignores: [
+            'resources/js/wayfinder/index.ts',
+            'resources/js/routes/**/*'
+        ],
+        plugins: {
+            '@typescript-eslint': tsPlugin,
+        },
+        rules: {
+            '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+            '@typescript-eslint/explicit-function-return-type': 'off',
+            '@typescript-eslint/no-explicit-any': 'warn',
+            '@typescript-eslint/no-inferrable-types': 'warn',
+            '@typescript-eslint/no-non-null-assertion': 'warn',
+            '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+            '@typescript-eslint/no-var-requires': 'error',
+            '@typescript-eslint/ban-ts-comment': 'warn',
+            '@typescript-eslint/no-empty-function': 'warn',
+            '@typescript-eslint/no-shadow': 'error',
+            '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
+            '@typescript-eslint/prefer-ts-expect-error': 'warn',
         },
     },
 ];

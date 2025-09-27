@@ -20,14 +20,14 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
     requiresConfirmation: false,
-    twoFactorEnabled: false,
+    twoFactorEnabled: false
 });
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Two-Factor Authentication',
-        href: show.url(),
-    },
+        href: show.url()
+    }
 ];
 
 const { hasSetupData, clearTwoFactorAuthData } = useTwoFactorAuth();
@@ -52,7 +52,9 @@ onUnmounted(() => {
                     v-if="!twoFactorEnabled"
                     class="flex flex-col items-start justify-start space-y-4"
                 >
-                    <Badge variant="destructive">Disabled</Badge>
+                    <Badge variant="destructive">
+                        Disabled
+                    </Badge>
 
                     <p class="text-muted-foreground">
                         When you enable two-factor authentication, you will be
@@ -66,18 +68,20 @@ onUnmounted(() => {
                             v-if="hasSetupData"
                             @click="showSetupModal = true"
                         >
-                            <ShieldCheck />Continue Setup
+                            <ShieldCheck />
+                            Continue Setup
                         </Button>
                         <Form
                             v-else
+                            v-slot="{ processing }"
                             v-bind="enable.form()"
                             @success="showSetupModal = true"
-                            #default="{ processing }"
                         >
                             <Button type="submit" :disabled="processing">
-                                <ShieldCheck />Enable 2FA</Button
-                            ></Form
-                        >
+                                <ShieldCheck />
+                                Enable 2FA
+                            </Button>
+                        </Form>
                     </div>
                 </div>
 
@@ -85,7 +89,9 @@ onUnmounted(() => {
                     v-else
                     class="flex flex-col items-start justify-start space-y-4"
                 >
-                    <Badge variant="default">Enabled</Badge>
+                    <Badge variant="default">
+                        Enabled
+                    </Badge>
 
                     <p class="text-muted-foreground">
                         With two-factor authentication enabled, you will be
@@ -97,7 +103,7 @@ onUnmounted(() => {
                     <TwoFactorRecoveryCodes />
 
                     <div class="relative inline">
-                        <Form v-bind="disable.form()" #default="{ processing }">
+                        <Form v-slot="{ processing }" v-bind="disable.form()">
                             <Button
                                 variant="destructive"
                                 type="submit"
@@ -111,9 +117,9 @@ onUnmounted(() => {
                 </div>
 
                 <TwoFactorSetupModal
-                    v-model:isOpen="showSetupModal"
-                    :requiresConfirmation="requiresConfirmation"
-                    :twoFactorEnabled="twoFactorEnabled"
+                    v-model:is-open="showSetupModal"
+                    :requires-confirmation="requiresConfirmation"
+                    :two-factor-enabled="twoFactorEnabled"
                 />
             </div>
         </SettingsLayout>

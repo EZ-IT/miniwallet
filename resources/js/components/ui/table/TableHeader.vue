@@ -1,13 +1,13 @@
 <script setup>
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const props = defineProps({
-  class: { type: null, required: false },
+    class: { type: null, required: false, default: '' }
 });
 </script>
 
 <template>
-  <thead data-slot="table-header" :class="cn('[&_tr]:border-b', props.class)">
+    <thead data-slot="table-header" :class="cn('[&_tr]:border-b', props.class)">
     <slot />
-  </thead>
+    </thead>
 </template>

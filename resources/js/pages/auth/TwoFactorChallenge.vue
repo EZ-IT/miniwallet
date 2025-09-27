@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import {
     PinInput,
     PinInputGroup,
-    PinInputSlot,
+    PinInputSlot
 } from '@/components/ui/pin-input';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { store } from '@/routes/two-factor/login';
@@ -24,7 +24,7 @@ const authConfigContent = computed<AuthConfigContent>(() => {
             title: 'Recovery Code',
             description:
                 'Please confirm access to your account by entering one of your emergency recovery codes.',
-            toggleText: 'login using an authentication code',
+            toggleText: 'login using an authentication code'
         };
     }
 
@@ -32,7 +32,7 @@ const authConfigContent = computed<AuthConfigContent>(() => {
         title: 'Authentication Code',
         description:
             'Enter the authentication code provided by your authenticator application.',
-        toggleText: 'login using a recovery code',
+        toggleText: 'login using a recovery code'
     };
 });
 
@@ -58,11 +58,11 @@ const codeValue = computed<string>(() => code.value.join(''));
         <div class="space-y-6">
             <template v-if="!showRecoveryInput">
                 <Form
+                    v-slot="{ errors, processing, clearErrors }"
                     v-bind="store.form()"
                     class="space-y-4"
                     reset-on-error
                     @error="code = []"
-                    #default="{ errors, processing, clearErrors }"
                 >
                     <input type="hidden" name="code" :value="codeValue" />
                     <div
@@ -71,8 +71,8 @@ const codeValue = computed<string>(() => code.value.join(''));
                         <div class="flex w-full items-center justify-center">
                             <PinInput
                                 id="otp"
-                                placeholder="○"
                                 v-model="code"
+                                placeholder="○"
                                 type="number"
                                 otp
                             >
@@ -89,9 +89,9 @@ const codeValue = computed<string>(() => code.value.join(''));
                         </div>
                         <InputError :message="errors.code" />
                     </div>
-                    <Button type="submit" class="w-full" :disabled="processing"
-                        >Continue</Button
-                    >
+                    <Button type="submit" class="w-full" :disabled="processing">
+                        Continue
+                    </Button>
                     <div class="text-center text-sm text-muted-foreground">
                         <span>or you can </span>
                         <button
@@ -107,10 +107,10 @@ const codeValue = computed<string>(() => code.value.join(''));
 
             <template v-else>
                 <Form
+                    v-slot="{ errors, processing, clearErrors }"
                     v-bind="store.form()"
                     class="space-y-4"
                     reset-on-error
-                    #default="{ errors, processing, clearErrors }"
                 >
                     <Input
                         name="recovery_code"
@@ -120,9 +120,9 @@ const codeValue = computed<string>(() => code.value.join(''));
                         required
                     />
                     <InputError :message="errors.recovery_code" />
-                    <Button type="submit" class="w-full" :disabled="processing"
-                        >Continue</Button
-                    >
+                    <Button type="submit" class="w-full" :disabled="processing">
+                        Continue
+                    </Button>
 
                     <div class="text-center text-sm text-muted-foreground">
                         <span>or you can </span>

@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
     class: '',
     size: 16,
     strokeWidth: 2,
+    color: ''
 });
 
 const className = computed(() => cn('h-4 w-4', props.class));

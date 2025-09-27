@@ -17,13 +17,13 @@ import { LoaderCircle } from 'lucide-vue-next';
         <Head title="Confirm password" />
 
         <Form
+            v-slot="{ errors, processing }"
             v-bind="store.form()"
             reset-on-success
-            v-slot="{ errors, processing }"
         >
             <div class="space-y-6">
                 <div class="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
+                    <Label html-for="password">Password</Label>
                     <Input
                         id="password"
                         type="password"

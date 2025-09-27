@@ -25,20 +25,20 @@ const inputEmail = ref(props.email);
         <Head title="Reset password" />
 
         <Form
+            v-slot="{ errors, processing }"
             v-bind="NewPasswordController.store.form()"
             :transform="(data) => ({ ...data, token, email })"
             :reset-on-success="['password', 'password_confirmation']"
-            v-slot="{ errors, processing }"
         >
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="email">Email</Label>
                     <Input
                         id="email"
+                        v-model="inputEmail"
                         type="email"
                         name="email"
                         autocomplete="email"
-                        v-model="inputEmail"
                         class="mt-1 block w-full"
                         readonly
                     />

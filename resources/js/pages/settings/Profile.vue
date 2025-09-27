@@ -24,8 +24,8 @@ defineProps<Props>();
 const breadcrumbItems: BreadcrumbItem[] = [
     {
         title: 'Profile settings',
-        href: edit().url,
-    },
+        href: edit().url
+    }
 ];
 
 const page = usePage();
@@ -44,9 +44,9 @@ const user = page.props.auth.user;
                 />
 
                 <Form
+                    v-slot="{ errors, processing, recentlySuccessful }"
                     v-bind="ProfileController.update.form()"
                     class="space-y-6"
-                    v-slot="{ errors, processing, recentlySuccessful }"
                 >
                     <div class="grid gap-2">
                         <Label for="name">Name</Label>
@@ -102,8 +102,9 @@ const user = page.props.auth.user;
                         <Button
                             :disabled="processing"
                             data-test="update-profile-button"
-                            >Save</Button
                         >
+                            Save
+                        </Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"

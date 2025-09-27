@@ -7,26 +7,26 @@ import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuTrigger,
+    DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuList,
-    navigationMenuTriggerStyle,
+    navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
-    SheetTrigger,
+    SheetTrigger
 } from '@/components/ui/sheet';
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
-    TooltipTrigger,
+    TooltipTrigger
 } from '@/components/ui/tooltip';
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    breadcrumbs: () => [],
+    breadcrumbs: () => []
 });
 
 const page = usePage();
@@ -50,35 +50,35 @@ const auth = computed(() => page.props.auth);
 
 const isCurrentRoute = computed(
     () => (url: NonNullable<InertiaLinkProps['href']>) =>
-        urlIsActive(url, page.url),
+        urlIsActive(url, page.url)
 );
 
 const activeItemStyles = computed(
     () => (url: NonNullable<InertiaLinkProps['href']>) =>
         isCurrentRoute.value(toUrl(url))
             ? 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100'
-            : '',
+            : ''
 );
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: dashboard(),
-        icon: LayoutGrid,
-    },
+        icon: LayoutGrid
+    }
 ];
 
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
         href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
+        icon: Folder
     },
     {
         title: 'Documentation',
         href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+        icon: BookOpen
+    }
 ];
 </script>
 
@@ -89,7 +89,7 @@ const rightNavItems: NavItem[] = [
                 <!-- Mobile Menu -->
                 <div class="lg:hidden">
                     <Sheet>
-                        <SheetTrigger :as-child="true">
+                        <SheetTrigger as-child>
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -99,9 +99,9 @@ const rightNavItems: NavItem[] = [
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" class="w-[300px] p-6">
-                            <SheetTitle class="sr-only"
-                                >Navigation Menu</SheetTitle
-                            >
+                            <SheetTitle class="sr-only">
+                                Navigation Menu
+                            </SheetTitle>
                             <SheetHeader class="flex justify-start text-left">
                                 <AppLogoIcon
                                     class="size-6 fill-current text-black dark:text-white"
@@ -119,8 +119,8 @@ const rightNavItems: NavItem[] = [
                                         :class="activeItemStyles(item.href)"
                                     >
                                         <component
-                                            v-if="item.icon"
                                             :is="item.icon"
+                                            v-if="item.icon"
                                             class="h-5 w-5"
                                         />
                                         {{ item.title }}
@@ -136,8 +136,8 @@ const rightNavItems: NavItem[] = [
                                         class="flex items-center space-x-2 text-sm font-medium"
                                     >
                                         <component
-                                            v-if="item.icon"
                                             :is="item.icon"
+                                            v-if="item.icon"
                                             class="h-5 w-5"
                                         />
                                         <span>{{ item.title }}</span>
@@ -172,8 +172,8 @@ const rightNavItems: NavItem[] = [
                                     :href="item.href"
                                 >
                                     <component
-                                        v-if="item.icon"
                                         :is="item.icon"
+                                        v-if="item.icon"
                                         class="mr-2 h-4 w-4"
                                     />
                                     {{ item.title }}
@@ -219,8 +219,8 @@ const rightNavItems: NavItem[] = [
                                                     rel="noopener noreferrer"
                                                 >
                                                     <span class="sr-only">{{
-                                                        item.title
-                                                    }}</span>
+                                                            item.title
+                                                        }}</span>
                                                     <component
                                                         :is="item.icon"
                                                         class="size-5 opacity-80 group-hover:opacity-100"
@@ -238,7 +238,7 @@ const rightNavItems: NavItem[] = [
                     </div>
 
                     <DropdownMenu>
-                        <DropdownMenuTrigger :as-child="true">
+                        <DropdownMenuTrigger as-child>
                             <Button
                                 variant="ghost"
                                 size="icon"

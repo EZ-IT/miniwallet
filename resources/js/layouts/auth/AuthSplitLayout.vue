@@ -30,7 +30,9 @@ defineProps<{
             </Link>
             <div v-if="quote" class="relative z-20 mt-auto">
                 <blockquote class="space-y-2">
-                    <p class="text-lg">&ldquo;{{ quote.message }}&rdquo;</p>
+                    <p class="text-lg">
+                        &ldquo;{{ quote.message }}&rdquo;
+                    </p>
                     <footer class="text-sm text-neutral-300">
                         {{ quote.author }}
                     </footer>
@@ -42,10 +44,10 @@ defineProps<{
                 class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
             >
                 <div class="flex flex-col space-y-2 text-center">
-                    <h1 class="text-xl font-medium tracking-tight" v-if="title">
+                    <h1 v-if="title" class="text-xl font-medium tracking-tight">
                         {{ title }}
                     </h1>
-                    <p class="text-sm text-muted-foreground" v-if="description">
+                    <p v-if="description" class="text-sm text-muted-foreground">
                         {{ description }}
                     </p>
                 </div>

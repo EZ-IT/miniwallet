@@ -33,9 +33,9 @@ defineProps<{
         </div>
 
         <Form
+            v-slot="{ errors, processing }"
             v-bind="AuthenticatedSessionController.store.form()"
             :reset-on-success="['password']"
-            v-slot="{ errors, processing }"
             class="flex flex-col gap-6"
         >
             <div class="grid gap-6">
@@ -102,7 +102,9 @@ defineProps<{
 
             <div class="text-center text-sm text-muted-foreground">
                 Don't have an account?
-                <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
+                <TextLink :href="register()" :tabindex="5">
+                    Sign up
+                </TextLink>
             </div>
         </Form>
     </AuthBase>

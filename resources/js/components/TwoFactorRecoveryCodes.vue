@@ -6,7 +6,7 @@ import {
     CardContent,
     CardDescription,
     CardHeader,
-    CardTitle,
+    CardTitle
 } from '@/components/ui/card';
 import { useTwoFactorAuth } from '@/composables/useTwoFactorAuth';
 import { regenerateRecoveryCodes } from '@/routes/two-factor';
@@ -42,7 +42,8 @@ onMounted(async () => {
     <Card class="w-full">
         <CardHeader>
             <CardTitle class="flex gap-3">
-                <LockKeyhole class="size-4" />2FA Recovery Codes
+                <LockKeyhole class="size-4" />
+                2FA Recovery Codes
             </CardTitle>
             <CardDescription>
                 Recovery codes let you regain access if you lose your 2FA
@@ -53,7 +54,7 @@ onMounted(async () => {
             <div
                 class="flex flex-col gap-3 select-none sm:flex-row sm:items-center sm:justify-between"
             >
-                <Button @click="toggleRecoveryCodesVisibility" class="w-fit">
+                <Button class="w-fit" @click="toggleRecoveryCodesVisibility">
                     <component
                         :is="isRecoveryCodesVisible ? EyeOff : Eye"
                         class="size-4"
@@ -64,18 +65,19 @@ onMounted(async () => {
 
                 <Form
                     v-if="isRecoveryCodesVisible && recoveryCodesList.length"
+                    v-slot="{ processing }"
                     v-bind="regenerateRecoveryCodes.form()"
                     method="post"
                     :options="{ preserveScroll: true }"
                     @success="fetchRecoveryCodes"
-                    #default="{ processing }"
                 >
                     <Button
                         variant="secondary"
                         type="submit"
                         :disabled="processing"
                     >
-                        <RefreshCw /> Regenerate Codes
+                        <RefreshCw />
+                        Regenerate Codes
                     </Button>
                 </Form>
             </div>
@@ -103,8 +105,8 @@ onMounted(async () => {
                             ></div>
                         </div>
                         <div
-                            v-else
                             v-for="(code, index) in recoveryCodesList"
+                            v-else
                             :key="index"
                         >
                             {{ code }}

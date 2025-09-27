@@ -16,8 +16,8 @@ import { type BreadcrumbItem } from '@/types';
 const breadcrumbItems: BreadcrumbItem[] = [
     {
         title: 'Password settings',
-        href: edit().url,
-    },
+        href: edit().url
+    }
 ];
 
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -36,6 +36,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                 />
 
                 <Form
+                    v-slot="{ errors, processing, recentlySuccessful }"
                     v-bind="PasswordController.update.form()"
                     :options="{
                         preserveScroll: true,
@@ -47,7 +48,6 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                         'current_password',
                     ]"
                     class="space-y-6"
-                    v-slot="{ errors, processing, recentlySuccessful }"
                 >
                     <div class="grid gap-2">
                         <Label for="current_password">Current password</Label>
@@ -78,9 +78,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password_confirmation"
-                            >Confirm password</Label
-                        >
+                        <Label for="password_confirmation">Confirm password</Label>
                         <Input
                             id="password_confirmation"
                             name="password_confirmation"
@@ -96,8 +94,9 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                         <Button
                             :disabled="processing"
                             data-test="update-password-button"
-                            >Save password</Button
                         >
+                            Save password
+                        </Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"

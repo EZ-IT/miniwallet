@@ -7,12 +7,12 @@ import {
     DialogContent,
     DialogDescription,
     DialogHeader,
-    DialogTitle,
+    DialogTitle
 } from '@/components/ui/dialog';
 import {
     PinInput,
     PinInputGroup,
-    PinInputSlot,
+    PinInputSlot
 } from '@/components/ui/pin-input';
 import { useTwoFactorAuth } from '@/composables/useTwoFactorAuth';
 import { confirm } from '@/routes/two-factor';
@@ -49,7 +49,7 @@ const modalConfig = computed<{
             title: 'Two-Factor Authentication Enabled',
             description:
                 'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
-            buttonText: 'Close',
+            buttonText: 'Close'
         };
     }
 
@@ -57,7 +57,7 @@ const modalConfig = computed<{
         return {
             title: 'Verify Authentication Code',
             description: 'Enter the 6-digit code from your authenticator app',
-            buttonText: 'Continue',
+            buttonText: 'Continue'
         };
     }
 
@@ -65,7 +65,7 @@ const modalConfig = computed<{
         title: 'Enable Two-Factor Authentication',
         description:
             'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
-        buttonText: 'Continue',
+        buttonText: 'Continue'
     };
 });
 
@@ -104,7 +104,7 @@ watch(
         if (!qrCodeSvg.value) {
             await fetchSetupData();
         }
-    },
+    }
 );
 </script>
 
@@ -170,8 +170,8 @@ watch(
                                     class="relative z-10 overflow-hidden border p-5"
                                 >
                                     <div
-                                        v-html="qrCodeSvg"
                                         class="flex aspect-square size-full items-center justify-center"
+                                        v-html="qrCodeSvg"
                                     />
                                 </div>
                             </div>
@@ -189,9 +189,7 @@ watch(
                             <div
                                 class="absolute inset-0 top-1/2 h-px w-full bg-border"
                             />
-                            <span class="relative bg-card px-2 py-1"
-                                >or, enter the code manually</span
-                            >
+                            <span class="relative bg-card px-2 py-1">or, enter the code manually</span>
                         </div>
 
                         <div
@@ -214,8 +212,8 @@ watch(
                                         class="h-full w-full bg-background p-3 text-foreground"
                                     />
                                     <button
-                                        @click="copy(manualSetupKey || '')"
                                         class="relative block h-auto border-l border-border px-3 hover:bg-muted"
+                                        @click="copy(manualSetupKey || '')"
                                     >
                                         <Check
                                             v-if="copied"
@@ -231,11 +229,11 @@ watch(
 
                 <template v-else>
                     <Form
+                        v-slot="{ errors, processing }"
                         v-bind="confirm.form()"
                         reset-on-error
                         @finish="code = []"
                         @success="isOpen = false"
-                        v-slot="{ errors, processing }"
                     >
                         <input type="hidden" name="code" :value="codeValue" />
                         <div
@@ -247,16 +245,16 @@ watch(
                             >
                                 <PinInput
                                     id="otp"
-                                    placeholder="○"
                                     v-model="code"
+                                    placeholder="○"
                                     type="number"
                                     otp
                                 >
                                     <PinInputGroup>
                                         <PinInputSlot
-                                            autofocus
                                             v-for="(id, index) in 6"
                                             :key="id"
+                                            autofocus
                                             :index="index"
                                             :disabled="processing"
                                         />
@@ -275,8 +273,8 @@ watch(
                                     type="button"
                                     variant="outline"
                                     class="w-auto flex-1"
-                                    @click="showVerificationStep = false"
                                     :disabled="processing"
+                                    @click="showVerificationStep = false"
                                 >
                                     Back
                                 </Button>

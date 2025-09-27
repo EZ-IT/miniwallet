@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import EmailVerificationNotificationController from '@/actions/App/Http/Controllers/Auth/EmailVerificationNotificationController';
+import EmailVerificationNotificationController
+    from '@/actions/App/Http/Controllers/Auth/EmailVerificationNotificationController';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import AuthLayout from '@/layouts/AuthLayout.vue';
@@ -28,9 +29,9 @@ defineProps<{
         </div>
 
         <Form
+            v-slot="{ processing }"
             v-bind="EmailVerificationNotificationController.store.form()"
             class="space-y-6 text-center"
-            v-slot="{ processing }"
         >
             <Button :disabled="processing" variant="secondary">
                 <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
