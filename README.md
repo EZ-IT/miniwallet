@@ -38,19 +38,24 @@ Pest is used for testing.
     npm run dev # for development build
     npm run prod # for production build
     ```
+### 6. In order to process the events for the real-time updates you need to run start the default queue worker:
+```bash
+  php artisan queue:work
+```
+
 ## Usage
 ### 0. To start off with the application it is recommended to register a new user.
 You can do that by visiting the `/register` route.
 
 ### 1. To generate some test data(dummy users), you can run the following command:
 ```bash
-php artisan db:seed
+  php artisan db:seed
 ```
 **Note: every generated user has the same password: `password`**
 
 ### 2. To add balance to a user, you can use the following command `php artisan user:deposit {user_id} {amount}`:
 ```bash
-php artisan user:deposit 1 100
+  php artisan user:deposit 1 100
 ```
 
 
