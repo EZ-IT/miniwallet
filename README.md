@@ -40,3 +40,13 @@ Pest is used for testing.
     ```
 ## Usage
 [TODO]
+
+
+## For devs
+**Optional:** You can also run following commands:
+```bash
+npm run eslint # for linting the frontend
+composer lint # for phpcsfixer
+composer rector # for refactoring the code
+composer test:types # for static analysis
+```
