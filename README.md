@@ -17,27 +17,28 @@ Pest is used for testing.
 
 ### 1. Clone the repository.
 ### 2. Set you environment variables in a `.env` file based on the `.env.example` file
-    ```bash
-    cp .env.example .env
-    ```
-   **You need to set up your database and a Pusher account for the real time events in the `.env` file.**
+```bash
+    cp .env.example .envnpm
+```
+   **You need to set up your database and a Pusher account( PUSHER_APP_ID, PUSHER_APP_KEY, PUSHER_APP_SECRET) for the real time events in the `.env` file.**
 
-### 3. Set your app key with the following command:
-    ```bash
-    php artisan key:generate
-    ```
-### 4. Set up your database and run the migrations:
-    ```bash
-    php artisan migrate
-    ```
-
-### 5. To install dependencies and build the project, run the following commands:
-    ```bash
+### 3. To install dependencies and build the project, run the following commands:
+```bash
     composer install
     npm install
     npm run dev # for development build
     npm run prod # for production build
-    ```
+```
+
+### 4. Set your app key with the following command:
+```bash
+    php artisan key:generate
+```
+### 5. Set up your database and run the migrations:
+```bash
+    php artisan migrate
+```
+
 ### 6. In order to process the events for the real-time updates you need to run start the default queue worker:
 ```bash
   php artisan queue:work
