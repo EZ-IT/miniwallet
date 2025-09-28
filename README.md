@@ -2,7 +2,8 @@
 
 1. [Introduction](#introduction)
 2. [Installation](#installation)
-3. [Usage](#usage)
+3. [Installation with Laravel Sail](#installation-with-laravel-sail)
+4. [Usage](#usage)
 
 ## Introduction
 
@@ -13,7 +14,7 @@ Rector is used for code refactoring.
 Phpstan is used for static analysis. (see `phpstan.neon` file for rules)
 Pest is used for testing.
 
-## Installation
+## Installation 
 
 ### 1. Clone the repository.
 ### 2. Set you environment variables in a `.env` file based on the `.env.example` file
@@ -43,6 +44,65 @@ Pest is used for testing.
 ```bash
   php artisan queue:work
 ```
+## Installation with Laravel Sail
+
+1. Clone the repository as usual.
+
+2. Copy the environment file:
+    ```bash
+    cp .env.example .env
+    ```
+
+3. Update your `.env`:
+    - Change your .env values to:
+```
+      APP_URL=http://localhost:8080
+      
+      DB_CONNECTION=mysql
+      DB_HOST=mysql
+      DB_PORT=3306
+      DB_DATABASE=mini_wallet
+      DB_USERNAME=sail
+      DB_PASSWORD=password
+```
+    - Set up your Pusher account as needed.
+
+4. Start Sail and install dependencies:
+```bash
+    composer install
+    ./vendor/bin/sail sail build --no-cache
+    ./vendor/bin/sail up -d
+    ./vendor/bin/sail composer install
+    ./vendor/bin/sail npm install
+    ./vendor/bin/sail npm run dev # or npm run prod
+```
+
+5. Generate app key:
+```bash
+    ./vendor/bin/sail artisan key:generate
+```
+
+6. Run database migrations:
+```bash
+    ./vendor/bin/sail artisan migrate
+```
+
+7. (Recommended) Start the queue worker for real-time updates:
+```bash
+    ./vendor/bin/sail artisan queue:work
+```
+
+8. (Optional) Run other development commands:
+```bash
+    ./vendor/bin/sail npm run eslint
+    ./vendor/bin/sail composer lint
+    ./vendor/bin/sail composer rector
+    ./vendor/bin/sail composer test:types
+    ./vendor/bin/sail composer test
+```
+
+**Note:** All `php artisan`, `npm`, or `composer` commands should be prefixed with `./vendor/bin/sail` when using Sail.
+
 
 ## Usage
 ### 0. To start off with the application it is recommended to register a new user.
@@ -50,13 +110,13 @@ You can do that by visiting the `/register` route.
 
 ### 1. To generate some test data(dummy users), you can run the following command:
 ```bash
-  php artisan db:seed
+  php artisan db:seed #or ./vendor/bin/sail artisan db:seed
 ```
 **Note: every generated user has the same password: `password`**
 
 ### 2. To add balance to a user, you can use the following command `php artisan user:deposit {user_id} {amount}`:
 ```bash
-  php artisan user:deposit 1 100
+  php artisan user:deposit 1 100 #or ./vendor/bin/sail artisan user:deposit 1 100
 ```
 
 
